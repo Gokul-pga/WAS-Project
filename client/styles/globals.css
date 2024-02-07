@@ -1,0 +1,9 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+cool{
+    background-color: #bcb5b5a5;
+}
