@@ -27,4 +27,4 @@ mongoose
 
 app.use('/jwt',adminRegister);
 app.use("/jwt",adminLogin)
-app.use("/jwt",userRegister)
+app.use("/userjwt",userRegister)
