@@ -11,7 +11,7 @@ import { useSelect } from "@nextui-org/react";
 
 function Adminpg() {
   const dispatch = useDispatch();
-
+  const [userId, setUserId] = useState("");
   const router = useRouter();
   const [show, setShow] = useState(false);
   const [inputFields, setInputFields] = useState({
@@ -224,12 +224,12 @@ function Adminpg() {
             </button>
           </div>
         </div>
-        <div className="flex flex-col gap-5 w-[100%] md:w-[70%] h-[100vh] bg-white p-5">
+        <div className="flex flex-wrap gap-5 w-[100%] md:w-[70%]  bg-white p-5">
           {userDetails.map((item, index) => {
             return (
               <div
                 key={index}
-                className="flex flex-col items-center px-5 py-3 bg-gray-300 gap-5 w-[40%] rounded-md justify-between"
+                className="flex  flex-col w-[45%] items-center px-5 py-3 bg-gray-300 gap-5  rounded-md justify-between"
               >
                 <div className="flex-flex-col gap-5">
                   <div className="pb-2 flex flex-row gap-2">
@@ -258,12 +258,20 @@ function Adminpg() {
                     onClick={() => {
                       const id = item._id;
                       console.log(id);
+                      setUserId(id);
                       setShow(true);
                     }}
                   >
                     <MdDevices className="text-2xl text-red-500" />
                   </button>
-                  {show && <Deviceform show={show} setShow={setShow} />}
+                  {show && (
+                    <Deviceform
+                      userId={userId}
+                      setUserId={setUserId}
+                      show={show}
+                      setShow={setShow}
+                    />
+                  )}
                 </div>
               </div>
             );

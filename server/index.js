@@ -25,4 +25,4 @@ mongoose.connect(MONGOURL).then(console.log("Database connected"));
 app.use("/jwt", adminRegister);
 app.use("/jwt", adminLogin);
 app.use("/userjwt", userRegister);
-app.use("/addDevice", addDevice);
+app.use("/postdevice", addDevice);
