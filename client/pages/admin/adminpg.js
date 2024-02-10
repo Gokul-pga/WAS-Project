@@ -2,17 +2,25 @@ import { usercreateaccount } from "@/routes/userregister";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
-import { MdDelete } from "react-icons/md";
+import { MdDelete, MdDevices } from "react-icons/md";
 import { FaUserEdit } from "react-icons/fa";
+import Deviceform from "./deviceform";
+import { useDispatch, useSelector } from "react-redux";
+import { setAdminData, setUserData } from "@/redux/Slice";
+import { useSelect } from "@nextui-org/react";
 
 function Adminpg() {
+  const dispatch = useDispatch();
+
   const router = useRouter();
+  const [show, setShow] = useState(false);
   const [inputFields, setInputFields] = useState({
     username: "",
     email: "",
     password: "",
   });
 
+  //create user form handlesubmit
   const { username, email, password } = inputFields;
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   const passwordRegex = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d).{8,}$/;
@@ -29,7 +37,7 @@ function Adminpg() {
         toast.error("Password must meet the criteria.");
         return;
       }
-      //usercreateaccount(email, password, username);
+      usercreateaccount(email, password, username);
       console.log(inputFields);
       setInputFields({
         username: "",
@@ -41,6 +49,7 @@ function Adminpg() {
     }
   };
 
+  //fetch userdetails from database
   const [userDetails, setUserDetails] = useState([]);
   const getUserDetails = async () => {
     try {
@@ -54,12 +63,12 @@ function Adminpg() {
       })
         .then((res) => res.json())
         .then((data) => setUserDetails(data.data));
-      console.log("ok");
     } catch (error) {
       console.log(error, "get user details error");
     }
   };
 
+  // delete user
   const deleteuser = async (id) => {
     try {
       await fetch("http://localhost:5000/userjwt" + `/${id}`, {
@@ -81,15 +90,75 @@ function Adminpg() {
     }
   };
 
+  const [userDatas, setuserDatas] = useState("");
+  const collectData = async () => {
+    try {
+      await fetch("http://localhost:5000/jwt" + "/userData", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+          "Access-Control-Allow-Origin": "*",
+        },
+        body: JSON.stringify({
+          token: window.localStorage.getItem("Token"),
+        }),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          setuserDatas(data.data);
+
+          // if (data.data === "Token expired") {
+          //   window.localStorage.clear;
+          //   window.location.href = "/";
+          // }
+        });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  typeof window !== "undefined" &&
+    window.localStorage.setItem("userDetails", JSON.stringify(userDatas));
+
+  const windows =
+    typeof window !== "undefined" && window.localStorage.getItem("userDetails");
+  const fetchDetails = JSON.parse(windows);
+
+  // dispatch(setAdminData(fetchDetails));
+  // const admindata = useSelector((state) => state.tasks.fetchAdminData);
+
+  //account logout function
+  const logout = () => {
+    window.localStorage.clear;
+    window.location.href = "/";
+  };
+
+  //useeffect
   useEffect(() => {
     getUserDetails();
+    collectData();
   }, [userDetails]);
 
   return (
     <>
       <div className="flex flex-col justify-center md:justify-normal md:items-start items-center md:flex-row  w-full z-40 h-[100vh] ">
         <Toaster />
+
         <div className="flex flex-col w-[100%] md:w-[30%] h-[100vh] bg-black ">
+          <div className="p-5 w-full justify-center gap-2 items-center flex flex-col">
+            <div className="text-lg font-semibold flex text-white">
+              {fetchDetails.username}
+            </div>
+            <div className="text-lg font-semibold flex text-white">
+              {fetchDetails.email}
+            </div>
+            <button
+              onClick={logout}
+              className="text-white bg-red-500 px-5 py-1 items-center flex rounded-md font-semibold hover:scale-110 transition-all cursor-pointer"
+            >
+              Logout
+            </button>
+          </div>
           <div className="flex flex-col  w-[100%] justify-center items-center p-10 gap-5">
             <div className="text-3xl font-semibold flex text-white justify-center w-full">
               Create User
@@ -185,6 +254,16 @@ function Adminpg() {
                   <button>
                     <FaUserEdit className="text-2xl text-red-500" />
                   </button>
+                  <button
+                    onClick={() => {
+                      const id = item._id;
+                      console.log(id);
+                      setShow(true);
+                    }}
+                  >
+                    <MdDevices className="text-2xl text-red-500" />
+                  </button>
+                  {show && <Deviceform show={show} setShow={setShow} />}
                 </div>
               </div>
             );
