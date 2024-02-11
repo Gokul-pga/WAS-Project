@@ -54,19 +54,19 @@ function Deviceform({ show, setShow, userId, setUserId }) {
       <Modal open={show}>
         <div className="flex flex-col w-full h-[100vh] justify-center items-center">
           <Toaster />
-          <div className="bg-gray-300 gap-3 p-5 w-[35%] justify-center items-center flex flex-col">
+          <div className="bg-gray-300 gap-3 p-5 rounded-md w-[35%] justify-center items-center flex flex-col">
             <button
               onClick={() => {
                 setShow(false);
               }}
               className="flex flex-row justify-end w-full "
             >
-              <IoCloseOutline className="text-black text-xl font-bold" />
+              <IoCloseOutline className="text-black text-2xl font-semibold" />
             </button>
             <div className="flex flex-col gap-3 ">
               <div>
                 <input
-                  className=" p-2"
+                  className=" p-2 text-black font-semibold"
                   placeholder="Username"
                   value={username}
                   onChange={(e) => {
@@ -79,7 +79,7 @@ function Deviceform({ show, setShow, userId, setUserId }) {
               </div>
               <div>
                 <input
-                  className=" p-2"
+                  className=" p-2  text-black font-semibold"
                   placeholder="Device Name"
                   value={devicename}
                   onChange={(e) => {
@@ -92,7 +92,7 @@ function Deviceform({ show, setShow, userId, setUserId }) {
               </div>
               <div>
                 <input
-                  className=" p-2"
+                  className=" p-2  text-black font-semibold"
                   placeholder="Location"
                   value={location}
                   onChange={(e) => {
@@ -105,7 +105,7 @@ function Deviceform({ show, setShow, userId, setUserId }) {
               </div>
               <div>
                 <input
-                  className=" p-2"
+                  className=" p-2  text-black font-semibold"
                   placeholder="Status"
                   value={devicestatus}
                   onChange={(e) => {
@@ -118,7 +118,7 @@ function Deviceform({ show, setShow, userId, setUserId }) {
               </div>
               <div>
                 <input
-                  className=" p-2"
+                  className=" p-2  text-black font-semibold"
                   placeholder="Sump_Vol"
                   value={sumpvol}
                   onChange={(e) => {
@@ -128,7 +128,7 @@ function Deviceform({ show, setShow, userId, setUserId }) {
               </div>
               <div>
                 <input
-                  className=" p-2"
+                  className=" p-2  text-black font-semibold"
                   placeholder="Tannk_Vol"
                   value={tankvol}
                   onChange={(e) => {
@@ -137,8 +137,14 @@ function Deviceform({ show, setShow, userId, setUserId }) {
                 />
               </div>
             </div>
-            <div>
-              <button onClick={handlesubmit}>Create Device</button>
+            <div className="p-3">
+              <button
+                className="px-5 transition-all hover:scale-110 rounded-sm
+                 py-2 text-white items-center bg-black"
+                onClick={handlesubmit}
+              >
+                Create Device
+              </button>
             </div>
           </div>
         </div>

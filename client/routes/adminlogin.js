@@ -19,9 +19,9 @@ export const adminLoginAccount = async (adminemail, adminpassword) => {
         console.log("admin logined successfully");
         if (data.status == "ok") {
           toast.success(" logined successfully");
+          window.location.href = "/admin/adminpg";
         }
         window.localStorage.setItem("Token", data.data);
-        window.location.href = "/admin/adminpg";
         typeof window !== "undefined" &&
           window.localStorage.setItem("userDetails", JSON.stringify(data.data));
       });

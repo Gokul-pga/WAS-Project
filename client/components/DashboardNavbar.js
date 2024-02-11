@@ -63,8 +63,13 @@ function DashboardNavbar() {
           })}
         </div>
         <div className="w-full justify-center flex flex-row">
-          <button className="text-xl bg-red-500 px-5 font-semibold rounded-md py-2 text-white">
-            Logout
+          <button
+            className="text-xl bg-red-500 px-5 font-semibold rounded-md py-2 text-white"
+            onClick={() => {
+              router.push("/admin/adminpg");
+            }}
+          >
+            Back to Admin Page
           </button>
         </div>
       </div>

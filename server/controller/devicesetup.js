@@ -66,3 +66,24 @@ exports.deleteDevice = async (req, res) => {
     console.log(error, "delete error from deletedevice");
   }
 };
+
+exports.getDevicesForUser = async (req, res) => {
+  const { username } = req.body;
+
+  try {
+    // Find the device document for the given user
+    const deviceDoc = await DeviceModel.findOne({ username });
+
+    if (!deviceDoc) {
+      return res.send({ status: "No devices found for the user" });
+    }
+
+    // Extract devices array from the document
+    const devices = deviceDoc.devices;
+
+    res.send({ status: "ok", data: devices });
+  } catch (error) {
+    console.error("Error fetching devices:", error);
+    res.status(500).send({ status: "Error", error: error.message });
+  }
+};
