@@ -31,7 +31,7 @@ function DashboardNavbar() {
 
   return (
     <>
-      <div className="flex flex-col w-full h-[100vh] bg-cyan-900 justify-between py-10 rounded-br-lg">
+      <div className="flex flex-col w-full h-[100vh] bg-black justify-between py-10 rounded-br-lg">
         <div className="flex flex-row text-white gap-2 justify-center">
           <div className="text-xl text-white">
             <span className="text-blue-600 text-3xl font-semibold">W</span>ater

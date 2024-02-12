@@ -62,11 +62,17 @@ function AdminDashboard() {
                         <div className="font-bold">Username:</div>{" "}
                         <div className="font-semibold">{item.username}</div>
                       </div>
-                      <div className=" flex flex-row gap-2">
-                        <div className="font-bold">Email:</div>{" "}
-                        <div className="font-semibold">{item.email}</div>
-                      </div>
-                      <div className=" flex flex-row gap-2">
+                      {/* {item.devices &&
+                        item.devices.map((data) => (
+                          <div
+                            key={item.index}
+                            className=" flex pb-2 flex-row gap-2"
+                          >
+                            <div className="font-bold">Email:</div>
+                            <div className="font-semibold">{data.username}</div>
+                          </div>
+                        ))} */}
+                      <div className=" flex pb-2 flex-row gap-3">
                         <div className="font-bold">UserId:</div>{" "}
                         <div className="font-semibold">{item.userId}</div>
                       </div>

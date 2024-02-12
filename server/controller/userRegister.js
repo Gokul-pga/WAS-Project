@@ -12,9 +12,9 @@ exports.userRegister = async (req, res) => {
       return res.send({ status: "ok", data: "user already exists" });
     }
     await userAuth.create({
+      username,
       email,
       password: encryptpassword,
-      username,
     });
     res.send({ status: "ok", data: req.body });
   } catch (error) {

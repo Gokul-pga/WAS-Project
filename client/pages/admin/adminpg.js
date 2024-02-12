@@ -224,58 +224,60 @@ function Adminpg() {
             </button>
           </div>
         </div>
-        <div className="flex flex-wrap gap-5 w-[100%] md:w-[70%]  bg-white p-5">
-          {userDetails.map((item, index) => {
-            return (
-              <div
-                key={index}
-                className="flex  flex-col w-[45%] items-center px-5 py-3 bg-gray-300 gap-5  rounded-md justify-between"
-              >
-                <div className="flex-flex-col gap-5">
-                  <div className="pb-2 flex flex-row gap-2">
-                    <div className="font-bold">Username:</div>{" "}
-                    <div className="font-semibold">{item.username}</div>
+        <div className="flex flex-col w-[100%] md:w-[70%]">
+          <div className="flex flex-wrap gap-5 w-[100%] md:w-[70%]  bg-white p-5">
+            {userDetails.map((item, index) => {
+              return (
+                <div
+                  key={index}
+                  className="flex  flex-col w-[45%] items-center px-5 py-3 bg-gray-300 gap-5  rounded-md justify-between"
+                >
+                  <div className="flex-flex-col gap-5">
+                    <div className="pb-2 flex flex-row gap-2">
+                      <div className="font-bold">Username:</div>{" "}
+                      <div className="font-semibold">{item.username}</div>
+                    </div>
+                    <div className=" flex flex-row gap-2">
+                      <div className="font-bold">Email:</div>{" "}
+                      <div className="font-semibold">{item.email}</div>
+                    </div>
                   </div>
-                  <div className=" flex flex-row gap-2">
-                    <div className="font-bold">Email:</div>{" "}
-                    <div className="font-semibold">{item.email}</div>
+                  <div className="flex flex-row justify-around w-full">
+                    <button
+                      onClick={() => {
+                        const id = item._id;
+                        console.log(id);
+                        deleteuser(id);
+                      }}
+                    >
+                      <MdDelete className="text-2xl text-red-500" />
+                    </button>
+                    <button>
+                      <FaUserEdit className="text-2xl text-red-500" />
+                    </button>
+                    <button
+                      onClick={() => {
+                        const id = item._id;
+                        console.log(id);
+                        setUserId(id);
+                        setShow(true);
+                      }}
+                    >
+                      <MdDevices className="text-2xl text-red-500" />
+                    </button>
+                    {show && (
+                      <Deviceform
+                        userId={userId}
+                        setUserId={setUserId}
+                        show={show}
+                        setShow={setShow}
+                      />
+                    )}
                   </div>
                 </div>
-                <div className="flex flex-row justify-around w-full">
-                  <button
-                    onClick={() => {
-                      const id = item._id;
-                      console.log(id);
-                      deleteuser(id);
-                    }}
-                  >
-                    <MdDelete className="text-2xl text-red-500" />
-                  </button>
-                  <button>
-                    <FaUserEdit className="text-2xl text-red-500" />
-                  </button>
-                  <button
-                    onClick={() => {
-                      const id = item._id;
-                      console.log(id);
-                      setUserId(id);
-                      setShow(true);
-                    }}
-                  >
-                    <MdDevices className="text-2xl text-red-500" />
-                  </button>
-                  {show && (
-                    <Deviceform
-                      userId={userId}
-                      setUserId={setUserId}
-                      show={show}
-                      setShow={setShow}
-                    />
-                  )}
-                </div>
-              </div>
-            );
-          })}
+              );
+            })}
+          </div>
         </div>
       </div>
     </>

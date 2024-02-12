@@ -2,9 +2,11 @@ import React, { useEffect, useState } from "react";
 import { FaUserEdit } from "react-icons/fa";
 import { IoArrowBackSharp } from "react-icons/io5";
 import { MdDelete } from "react-icons/md";
+import ReportForm from "./reportform";
 
 function Deviceshow({ setShow, show, username, id, setId }) {
   const [devices, setDevices] = useState([]);
+  const [reportForm, setReportForm] = useState(false);
 
   useEffect(() => {
     fetchData();
@@ -46,12 +48,30 @@ function Deviceshow({ setShow, show, username, id, setId }) {
 
   return (
     <>
-      <div className="flex flex-wrap gap-5 w-[100%]  bg-green-300 h-[100vh] p-5">
-        <IoArrowBackSharp
-          onClick={() => {
-            setShow(true);
-          }}
-        />
+      <div className="flex flex-wrap gap-5 w-[100%] h-[100vh] ">
+        <div className="flex flex-row p-3 h-16 w-[100%]   justify-between items-center">
+          <IoArrowBackSharp
+            className="text-2xl"
+            onClick={() => {
+              setShow(true);
+            }}
+          />
+          <button
+            onClick={() => {
+              setReportForm(true);
+            }}
+            className="px-5 py-2 bg-gray-200 text-red-600 font-bold"
+          >
+            Report Create
+          </button>
+        </div>
+        {reportForm && (
+          <ReportForm
+            setReportForm={setReportForm}
+            reportForm={reportForm}
+            id={id}
+          />
+        )}
 
         {devices.map((item, index) => (
           <div
