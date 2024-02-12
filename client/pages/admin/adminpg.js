@@ -37,7 +37,7 @@ function Adminpg() {
         toast.error("Password must meet the criteria.");
         return;
       }
-      usercreateaccount(email, password, username);
+      usercreateaccount(username, email, password);
       console.log(inputFields);
       setInputFields({
         username: "",
