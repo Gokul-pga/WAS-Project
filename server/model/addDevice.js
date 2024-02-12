@@ -38,6 +38,7 @@ const childSchema = new mongoose.Schema({
 const deviceSchema = new mongoose.Schema({
   username: String,
   userId: String,
+  email: String,
   devices: [childSchema], // Renamed 'device' to 'devices'
 });
 

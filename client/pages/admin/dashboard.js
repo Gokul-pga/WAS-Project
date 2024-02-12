@@ -64,6 +64,10 @@ function AdminDashboard() {
                       </div>
                       <div className=" flex flex-row gap-2">
                         <div className="font-bold">Email:</div>{" "}
+                        <div className="font-semibold">{item.email}</div>
+                      </div>
+                      <div className=" flex flex-row gap-2">
+                        <div className="font-bold">UserId:</div>{" "}
                         <div className="font-semibold">{item.userId}</div>
                       </div>
                     </div>

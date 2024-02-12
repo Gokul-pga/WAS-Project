@@ -3,8 +3,16 @@ const { userAuth } = require("../model/userRegister");
 const { DeviceModel } = require("../model/addDevice");
 
 exports.addDevice = async (req, res) => {
-  const { username, devicename, userId, location, status, sump_vol, tank_vol } =
-    req.body;
+  const {
+    email,
+    username,
+    devicename,
+    userId,
+    location,
+    status,
+    sump_vol,
+    tank_vol,
+  } = req.body;
 
   try {
     // Check if the user exists
@@ -21,6 +29,7 @@ exports.addDevice = async (req, res) => {
       deviceDoc = new DeviceModel({
         username,
         userId,
+        email,
         devices: [], // Initialize devices array
       });
     }
