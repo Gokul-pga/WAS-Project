@@ -12,6 +12,7 @@ const adminLogin = require("./routes/adminLogin.js");
 const userRegister = require("./routes/userRegister.js");
 const addDevice = require("./routes/addDevice.js");
 const userLogin = require("./routes/userLogin.js");
+const deviceshow = require("./routes/report.js");
 
 // //server setup and connect
 //const port = process.env.PORT ;
@@ -23,8 +24,16 @@ app.listen(5000, () => {
 const MONGOURL = process.env.MONGODB;
 mongoose.connect(MONGOURL).then(console.log("Database connected"));
 
+// admin register and login api
 app.use("/jwt", adminRegister);
 app.use("/jwt", adminLogin);
+
+// user register and login api
 app.use("/userjwt", userRegister);
 app.use("/userjwt", userLogin);
+
+//create device based on user created
 app.use("/postdevice", addDevice);
+
+//crearte for report and alert analysis
+app.use("/deviceshow", deviceshow);
