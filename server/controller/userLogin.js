@@ -33,3 +33,26 @@ exports.userLogin = async (req, res) => {
       .json({ status: "error", error: "Internal server error" });
   }
 };
+
+exports.authentication = async (req, res, next) => {
+  const { token } = req.body;
+  // console.log(token, "USER");
+
+  try {
+    const user = jwt.verify(token, secret_key, (err, res) => {
+      if (err) {
+        return "token expired";
+      }
+      return res;
+    });
+
+    if (user == "token expired") {
+      return res.send({ status: "error", data: "token expired" });
+    }
+    await userAuth.findOne({ email: user.email }).then((data) => {
+      res.send({ status: "ok", data: data });
+    });
+  } catch (error) {
+    next(error);
+  }
+};

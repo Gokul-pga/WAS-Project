@@ -79,8 +79,11 @@ function Report() {
                   </tr>
                 </thead>
                 <tbody>
-                  {filterUser().map((report) => (
-                    <tr key={report._id}>
+                  {filterUser().map((report, index) => (
+                    <tr
+                      key={report._id}
+                      className={index % 2 === 0 ? "bg-gray-100" : "bg-white"}
+                    >
                       <td className="border px-4 py-2">{report.username}</td>
                       <td className="border px-4 py-2">{report.devicename}</td>
                       <td className="border px-4 py-2">{report.sump_state}</td>
@@ -108,8 +111,11 @@ function Report() {
                   </tr>
                 </thead>
                 <tbody>
-                  {userDetails.map((report) => (
-                    <tr key={report._id}>
+                  {userDetails.map((report, index) => (
+                    <tr
+                      key={report._id}
+                      className={index % 2 === 0 ? "bg-gray-100" : "bg-white"}
+                    >
                       <td className="border px-4 py-2">{report.username}</td>
                       <td className="border px-4 py-2">{report.devicename}</td>
                       <td className="border px-4 py-2">{report.sump_state}</td>

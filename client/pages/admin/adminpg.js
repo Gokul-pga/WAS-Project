@@ -154,7 +154,7 @@ function Adminpg() {
               Logout
             </button>
           </div>
-          <div className="flex flex-col  w-[100%] justify-center items-center p-10 gap-5 animate__animated animate__fadeInUp">
+          <div className="flex flex-col  w-[100%] justify-center items-center p-10 gap-5 animate__animated animate__zoomInLeft">
             <div className="text-3xl font-semibold flex text-white justify-center w-full">
               Create User
             </div>
@@ -213,7 +213,7 @@ function Adminpg() {
               onClick={() => {
                 router.push("/admin/dashboard");
               }}
-              className="text-white bg-red-500 px-3 py-2 rounded-md font-semibold hover:scale-110 transition-all cursor-pointer"
+              className="text-white shadow-lg hover:scale-110 transition-all hover:shadow-red-500/50 bg-red-500 px-3 py-2 rounded-md font-semibold  cursor-pointer animate__animated animate__zoomInRight"
             >
               Go To Dashboard
             </button>
@@ -225,7 +225,7 @@ function Adminpg() {
               return (
                 <div
                   key={index}
-                  className="flex  flex-col w-[45%] items-center px-5 py-3 bg-gray-300 gap-5  rounded-md justify-between"
+                  className="flex hover:scale-105 transition-all cursor-pointer flex-col w-[45%] items-center px-5 py-3 bg-gray-300 gap-5  rounded-md justify-between"
                 >
                   <div className="flex-flex-col gap-5">
                     <div className="pb-2 flex flex-row gap-2">

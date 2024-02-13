@@ -4,6 +4,8 @@ import React, { useEffect, useState } from "react";
 import { FaUserEdit } from "react-icons/fa";
 import { MdDelete, MdDevices } from "react-icons/md";
 import Deviceshow from "./deviceshow";
+import { FaUserCircle } from "react-icons/fa";
+import { FaUsers } from "react-icons/fa";
 
 function AdminDashboard() {
   const [show, setShow] = useState(true);
@@ -55,11 +57,16 @@ function AdminDashboard() {
                       setShow(false);
                     }}
                     key={index}
-                    className="flex  flex-col w-[45%] items-center px-5 py-3 bg-gray-300 gap-5  rounded-md justify-between"
+                    className="flex hover:scale-105 transition-all flex-col w-[45%] items-center px-5 py-3 bg-gray-300 gap-5  rounded-md justify-between"
                   >
                     <div className="flex-flex-col gap-5">
                       <div className="pb-2 flex flex-row gap-2">
-                        <div className="font-bold">Username:</div>{" "}
+                        <div className="font-bold flex flex-roe items-center gap-1">
+                          <div>
+                            <FaUserCircle className="text-xl" />
+                          </div>
+                          <div>Username:</div>
+                        </div>
                         <div className="font-semibold">{item.username}</div>
                       </div>
                       {/* {item.devices &&
@@ -75,6 +82,17 @@ function AdminDashboard() {
                       <div className=" flex pb-2 flex-row gap-3">
                         <div className="font-bold">UserId:</div>{" "}
                         <div className="font-semibold">{item.userId}</div>
+                      </div>
+                      <div className=" flex pb-2 flex-row gap-3">
+                        <div className="font-bold flex flex-roe items-center gap-1">
+                          <div>
+                            <FaUsers className="text-xl" />
+                          </div>
+                          <div>Total Users:</div>
+                        </div>{" "}
+                        <div className="font-semibold">
+                          {item.devices.length}
+                        </div>
                       </div>
                     </div>
                     <div className="flex flex-row justify-around w-full">
