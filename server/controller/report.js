@@ -47,11 +47,21 @@ exports.addReport = async (req, res) => {
   }
 };
 
-exports.getReport = async (req, res) => {
+// exports.getReport = async (req, res) => {
+//   try {
+//     const username = req.params.username;
+//     const device = await reportData.find({ username });
+//     res.send({ status: "getReport", data: device });
+//   } catch (error) {
+//     console.log(error, "error from getdevice in backend");
+//   }
+// };
+
+exports.getAllReport = async (req, res) => {
   try {
-    const device = await reportData.find({});
-    res.send({ status: "ok", data: device });
+    const allData = await reportData.find({});
+    res.send({ status: "getAllReport", data: allData });
   } catch (error) {
-    console.log(error, "error from getdevice in backend");
+    console.log(error, "Get User device error");
   }
 };

@@ -7,9 +7,35 @@ import {
   TableHeader,
   TableRow,
 } from "@nextui-org/react";
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 function Alert() {
+  //fetch userdetails from database
+  const [userDetails, setUserDetails] = useState([]);
+  const getUserDetails = async () => {
+    try {
+      await fetch("http://localhost:5000/deviceshow" + "/getallreport", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+          "Access-Control-Allow-Origin": "*",
+        },
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          setUserDetails(data.data);
+          console.log(data.data);
+        });
+    } catch (error) {
+      console.log(error, "get user details error");
+    }
+  };
+
+  useEffect(() => {
+    getUserDetails();
+  }, []);
+
   return (
     <>
       <div className="text-black flex flex-row w-full h-[100vh]">
@@ -24,39 +50,50 @@ function Alert() {
             <div className="bg-blue-400 p-2">
               <input placeholder="Search location " className="px-3 py-2" />
             </div>
-            <Table aria-label="Example static collection table">
-              <TableHeader>
-                <TableColumn>Device ID</TableColumn>
-                <TableColumn>Location</TableColumn>
-                <TableColumn>Status</TableColumn>
-                <TableColumn>Sump-Vol</TableColumn>
-                <TableColumn>Tank-Vol</TableColumn>
-              </TableHeader>
-              <TableBody>
-                <TableRow key="1" className="bg-gray-100 p-2">
-                  <TableCell>Device 1</TableCell>
-                  <TableCell>Coimbatore</TableCell>
-                  <TableCell>Active</TableCell>
-                  <TableCell className="text-red-500 font-semibold">
-                    Low
-                  </TableCell>
-                  <TableCell className="text-red-500 font-semibold">
-                    Low
-                  </TableCell>
-                </TableRow>
-                <TableRow key="2">
-                  <TableCell>Device 2</TableCell>
-                  <TableCell>Coimbatore</TableCell>
-                  <TableCell>-</TableCell>
-                  <TableCell className="text-red-500 font-semibold">
-                    Low
-                  </TableCell>
-                  <TableCell className="text-green-500 font-semibold">
-                    High
-                  </TableCell>
-                </TableRow>
-              </TableBody>
-            </Table>
+            <div>
+              <h2>Report Data</h2>
+              <table>
+                <thead
+                  style={{
+                    gap: 3,
+                    display: "flex",
+                    flexDirection: "row",
+                    width: "100%",
+                    backgroundColor: "red",
+                    justifyContent: "space-around",
+                  }}
+                >
+                  <tr className="">
+                    <th>Username</th>
+                    <th>Device Name</th>
+                    <th>Sump State</th>
+                    <th>Tank State</th>
+                    <th>Sump Duration</th>
+                    <th>Tank Duration</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {userDetails.map((report) => (
+                    <tr key={report._id}>
+                      <td color="#000">{report.username}</td>
+                      <td>{report.username}</td>
+                      <td>
+                        {"High" === report.sump_state ? (
+                          <td style={{ color: "red" }}>{report.sump_state}</td>
+                        ) : (
+                          <td style={{ color: "green" }}>
+                            {report.sump_state}
+                          </td>
+                        )}
+                      </td>
+                      <td>{report.tank_state}</td>
+                      <td>{report.sump_duration}</td>
+                      <td>{report.tank_duration}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
       </div>
