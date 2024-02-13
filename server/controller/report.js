@@ -1,4 +1,3 @@
-const mongoose = require("mongoose");
 const { DeviceModel } = require("../model/addDevice");
 const { reportData } = require("../model/report");
 
@@ -20,7 +19,7 @@ exports.addReport = async (req, res) => {
     }
 
     // Find the device within the user's devices
-    const device = userDoc.devices.find(
+    const device = await userDoc.devices.find(
       (device) => device.devicename === devicename
     );
     if (!device) {
@@ -45,5 +44,14 @@ exports.addReport = async (req, res) => {
     return res
       .status(500)
       .json({ status: "error", error: "Internal server error" });
+  }
+};
+
+exports.getReport = async (req, res) => {
+  try {
+    const device = await reportData.find({});
+    res.send({ status: "ok", data: device });
+  } catch (error) {
+    console.log(error, "error from getdevice in backend");
   }
 };

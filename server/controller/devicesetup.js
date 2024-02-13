@@ -1,4 +1,3 @@
-const express = require("express");
 const { userAuth } = require("../model/userRegister");
 const { DeviceModel } = require("../model/addDevice");
 

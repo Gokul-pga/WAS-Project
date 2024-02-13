@@ -12,7 +12,7 @@ const adminLogin = require("./routes/adminLogin.js");
 const userRegister = require("./routes/userRegister.js");
 const addDevice = require("./routes/addDevice.js");
 const userLogin = require("./routes/userLogin.js");
-const deviceshow = require("./routes/report.js");
+const deviceShow = require('./routes/report.js')
 
 // //server setup and connect
 //const port = process.env.PORT ;
@@ -36,4 +36,4 @@ app.use("/userjwt", userLogin);
 app.use("/postdevice", addDevice);
 
 //crearte for report and alert analysis
-app.use("/deviceshow", deviceshow);
+app.use("/deviceshow", deviceShow);
