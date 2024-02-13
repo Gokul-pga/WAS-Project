@@ -58,8 +58,11 @@ function Adminregister({ adminShowModal, setAdminShowModal }) {
 
   return (
     <>
-      <Modal open={adminShowModal}>
-        <div className="flex flex-row bg-[#bcb5b514]  w-full z-40 h-[100vh] justify-center items-center ">
+      <Modal
+        className=" animate__animated animate__backInDown border-none "
+        open={adminShowModal}
+      >
+        <div className="flex flex-row bg-transparent border-none  w-full z-40 h-[100vh] justify-center items-center ">
           <Toaster />
 
           {adminShow ? (

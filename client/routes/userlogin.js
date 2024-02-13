@@ -19,9 +19,9 @@ export const userLoginAccount = async (email, password) => {
         console.log("user logined successfully");
         if (data.status == "ok") {
           toast.success(" logined successfully");
+          window.location.href = "/dashboard";
         }
         window.localStorage.setItem("Token", data.data);
-        window.location.href = "/dashboard";
         typeof window !== "undefined" &&
           window.localStorage.setItem(
             "userLogindetails",

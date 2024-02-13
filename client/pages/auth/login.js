@@ -5,7 +5,7 @@ import toast, { Toaster } from "react-hot-toast";
 import { IoMdClose } from "react-icons/io";
 import Adminregister from "./adminregister";
 import { userLoginAccount } from "@/routes/userlogin";
-
+import "animate.css";
 function Loginpg({ showModal, setShowModal }) {
   const router = useRouter();
 
@@ -31,8 +31,11 @@ function Loginpg({ showModal, setShowModal }) {
 
   return (
     <>
-      <Modal open={showModal}>
-        <div className="flex flex-row bg-[#bcb5b514]  w-full z-40 h-[100vh] justify-center items-center ">
+      <Modal
+        className=" animate__animated animate__backInDown "
+        open={showModal}
+      >
+        <div className="flex flex-row  w-full z-40 h-[100vh] justify-center items-center">
           <Toaster />
 
           <div className="flex flex-col bg-[#fff]  w-[80%] md:w-[50%] lg:w-[30%] justify-center items-center p-10 gap-5">

@@ -107,11 +107,6 @@ function Adminpg() {
         .then((res) => res.json())
         .then((data) => {
           setuserDatas(data.data);
-
-          // if (data.data === "Token expired") {
-          //   window.localStorage.clear;
-          //   window.location.href = "/";
-          // }
         });
     } catch (error) {
       console.log(error);
@@ -145,7 +140,7 @@ function Adminpg() {
         <Toaster />
 
         <div className="flex flex-col w-[100%] md:w-[30%] h-[100vh] bg-black ">
-          <div className="p-5 w-full justify-center gap-2 items-center flex flex-col">
+          <div className="p-5 w-full justify-center gap-2 items-center flex flex-col animate__animated animate__zoomInDown">
             <div className="text-lg font-semibold flex text-white">
               {fetchDetails.username}
             </div>
@@ -159,7 +154,7 @@ function Adminpg() {
               Logout
             </button>
           </div>
-          <div className="flex flex-col  w-[100%] justify-center items-center p-10 gap-5">
+          <div className="flex flex-col  w-[100%] justify-center items-center p-10 gap-5 animate__animated animate__fadeInUp">
             <div className="text-3xl font-semibold flex text-white justify-center w-full">
               Create User
             </div>
