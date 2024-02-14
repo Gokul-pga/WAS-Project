@@ -39,9 +39,17 @@ function Alert() {
     setUserName(fetchDetails.username);
   }, []);
 
-  const filterUser = () => {
-    return userDetails.filter((user) => user.userName);
+  const filteredUserDetails = userDetails.filter(
+    (report) => report.username === userName
+  );
+
+  const tankStateColors = {
+    High: "green",
+    Low: "red",
+    Medium: "orange",
+    // Add more states as needed
   };
+
   return (
     <>
       <div className="text-black flex flex-row w-full h-[100vh]">
@@ -52,7 +60,13 @@ function Alert() {
           <div className="bg-sky-400 flex flex-row w-full px-5 py-3 justify-center text-xl font-semibold">
             Alert Data
           </div>
-          <div className="flex flex-col w-full h-[100vh]  text-2xl">
+          <div className="flex flex-col w-full h-[100vh]  text-xl">
+            <div className="p-2 mb-5 flex flex-row gap-5">
+              <input
+                placeholder="Search Devicename "
+                className="px-3 py-2 bg-gray-200"
+              />
+            </div>
             <div className="flex flex-row h-40">
               <table className="table-auto w-full">
                 <thead className="bg-gray-200">
@@ -66,17 +80,27 @@ function Alert() {
                   </tr>
                 </thead>
                 <tbody>
-                  {filterUser().map((report, index) => (
+                  {filteredUserDetails.map((report, index) => (
                     <tr
                       key={report._id}
                       className={index % 2 === 0 ? "bg-gray-100" : "bg-white"}
                     >
                       <td className="border px-4 py-2">{report.username}</td>
                       <td className="border px-4 py-2">{report.devicename}</td>
-                      <td className="border px-4 py-2 font-semibold">
+                      <td
+                        className="border px-4 py-2 font-semibold"
+                        style={{
+                          color: tankStateColors[report.sump_state] || "black",
+                        }}
+                      >
                         {report.sump_state}
                       </td>
-                      <td className="border px-4 py-2 font-semibold">
+                      <td
+                        className="border px-4 py-2 font-semibold"
+                        style={{
+                          color: tankStateColors[report.tank_state] || "black",
+                        }}
+                      >
                         {report.tank_state}
                       </td>
                       <td className="border px-4 py-2">

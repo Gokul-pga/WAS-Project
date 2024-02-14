@@ -88,7 +88,7 @@ function AdminDashboard() {
                           <div>
                             <FaUsers className="text-xl" />
                           </div>
-                          <div>Total Users:</div>
+                          <div>Total Devices:</div>
                         </div>{" "}
                         <div className="font-semibold">
                           {item.devices.length}

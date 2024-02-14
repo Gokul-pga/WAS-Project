@@ -1,5 +1,5 @@
 import React from "react";
-import { MdDashboard } from "react-icons/md";
+import { MdDashboard, MdLogout } from "react-icons/md";
 import { LuAlertTriangle } from "react-icons/lu";
 import { useRouter } from "next/router";
 import { FaDatabase } from "react-icons/fa";
@@ -69,7 +69,7 @@ function DashboardNavbar() {
               router.push("/admin/adminpg");
             }}
           >
-            <div>Logout</div>
+            <div>Back To Dashboard</div>
             <div>
               <MdLogout className="font-bold" />
             </div>
