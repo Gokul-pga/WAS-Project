@@ -1,12 +1,4 @@
 import DashboardNavbar from "@/components/DashboardNavbar";
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableColumn,
-  TableHeader,
-  TableRow,
-} from "@nextui-org/react";
 import React, { useEffect, useState } from "react";
 
 function Alert() {

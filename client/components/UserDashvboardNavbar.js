@@ -67,7 +67,7 @@ function UserDashboardNavbar() {
           <button
             className="text-xl shadow-lg flex flex-row gap-3 items-center hover:scale-110 transition-all hover:shadow-red-500/50 bg-red-500 px-5 font-semibold rounded-md py-2 text-white"
             onClick={() => {
-              router.push("/admin/adminpg");
+              router.push("/");
             }}
           >
             <div>Logout</div>
