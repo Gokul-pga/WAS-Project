@@ -67,8 +67,7 @@ function Dashboard() {
             </div>
           </div>
           <div className="flex flex-col w-full h-[100vh] items-center justify-center text-2xl">
-            {fetchDetails.username}
-            {fetchDetails.email}
+            Dashboard
           </div>
         </div>
       </div>
