@@ -1,4 +1,5 @@
 import DashboardNavbar from "@/components/DashboardNavbar";
+import { deviceshow } from "@/envfile/auth";
 import React, { useEffect, useState } from "react";
 
 function Alert() {
@@ -7,7 +8,7 @@ function Alert() {
   const [searchQuery, setSearchQuery] = useState("");
   const getUserDetails = async () => {
     try {
-      await fetch("http://localhost:5000/deviceshow" + "/getallreport", {
+      await fetch(deviceshow + "/getallreport", {
         method: "GET",
         headers: {
           "Content-Type": "application/json",

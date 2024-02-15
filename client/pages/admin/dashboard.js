@@ -6,6 +6,7 @@ import { MdDelete, MdDevices } from "react-icons/md";
 import Deviceshow from "./deviceshow";
 import { FaUserCircle } from "react-icons/fa";
 import { FaUsers } from "react-icons/fa";
+import { postdevice } from "@/envfile/auth";
 
 function AdminDashboard() {
   const [show, setShow] = useState(true);
@@ -14,7 +15,7 @@ function AdminDashboard() {
   const [userDetails, setUserDetails] = useState([]);
   const getUserDetails = async () => {
     try {
-      await fetch("http://localhost:5000/postdevice" + "/getDevice", {
+      await fetch(postdevice + "/getDevice", {
         method: "GET",
         headers: {
           "Content-Type": "application/json",

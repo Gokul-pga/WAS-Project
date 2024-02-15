@@ -1,4 +1,5 @@
 import UserDashboardNavbar from "@/components/UserDashvboardNavbar";
+import { userjwt } from "@/envfile/auth";
 import React, { useEffect, useState } from "react";
 import { FaRegUserCircle } from "react-icons/fa";
 import { MdOutlineMailOutline } from "react-icons/md";
@@ -7,7 +8,7 @@ function Dashboard() {
   const [userDatas, setuserDatas] = useState("");
   const collectData = async () => {
     try {
-      await fetch("http://localhost:5000/userjwt" + "/userdata", {
+      await fetch(userjwt + "/userdata", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

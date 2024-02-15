@@ -1,3 +1,4 @@
+import { deviceshow } from "@/envfile/auth";
 import toast from "react-hot-toast";
 
 export const addReport = async (
@@ -9,7 +10,7 @@ export const addReport = async (
   tank_duration
 ) => {
   try {
-    await fetch("http://localhost:5000/deviceshow" + "/addreport", {
+    await fetch(deviceshow + "/addreport", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

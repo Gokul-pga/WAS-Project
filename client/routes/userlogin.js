@@ -1,8 +1,9 @@
+import { userjwt } from "@/envfile/auth";
 import toast from "react-hot-toast";
 
 export const userLoginAccount = async (email, password) => {
   try {
-    await fetch("http://localhost:5000/userjwt" + "/userlogin", {
+    await fetch(userjwt + "/userlogin", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

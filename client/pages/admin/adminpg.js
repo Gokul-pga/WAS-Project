@@ -8,6 +8,7 @@ import Deviceform from "./deviceform";
 import { useDispatch, useSelector } from "react-redux";
 import { setAdminData, setUserData } from "@/redux/Slice";
 import { useSelect } from "@nextui-org/react";
+import { jwt, userjwt } from "@/envfile/auth";
 
 function Adminpg() {
   const dispatch = useDispatch();
@@ -53,7 +54,7 @@ function Adminpg() {
   const [userDetails, setUserDetails] = useState([]);
   const getUserDetails = async () => {
     try {
-      await fetch("http://localhost:5000/userjwt" + "/getuser", {
+      await fetch(userjwt + "/getuser", {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -71,7 +72,7 @@ function Adminpg() {
   // delete user
   const deleteuser = async (id) => {
     try {
-      await fetch("http://localhost:5000/userjwt" + `/${id}`, {
+      await fetch(userjwt + `/${id}`, {
         method: "DELETE",
         headers: {
           "Content-Type": "appliaction/json",
@@ -93,7 +94,7 @@ function Adminpg() {
   const [userDatas, setuserDatas] = useState("");
   const collectData = async () => {
     try {
-      await fetch("http://localhost:5000/jwt" + "/userData", {
+      await fetch(jwt + "/userData", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

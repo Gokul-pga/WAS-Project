@@ -1,3 +1,4 @@
+import { postdevice } from "@/envfile/auth";
 import toast from "react-hot-toast";
 
 export const addDevice = async (
@@ -10,7 +11,7 @@ export const addDevice = async (
   userId
 ) => {
   try {
-    await fetch("http://localhost:5000/postdevice" + "/addDevice", {
+    await fetch(postdevice + "/addDevice", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

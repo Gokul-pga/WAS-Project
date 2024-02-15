@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { MdOutlineMailOutline } from "react-icons/md";
 import { FaRegUserCircle } from "react-icons/fa";
 import DashboardNavbar from "@/components/DashboardNavbar";
+import { deviceshow } from "@/envfile/auth";
 
 function Alert() {
   const [userDetails, setUserDetails] = useState([]);
@@ -11,7 +12,7 @@ function Alert() {
 
   const getUserDetails = async () => {
     try {
-      await fetch("http://localhost:5000/deviceshow" + "/getallreport", {
+      await fetch(deviceshow + "/getallreport", {
         method: "GET",
         headers: {
           "Content-Type": "application/json",

@@ -1,9 +1,9 @@
-import { jwt } from "@/envfile/auth";
+import { jwt, userjwt } from "@/envfile/auth";
 import toast from "react-hot-toast";
 
 export const usercreateaccount = async (username, email, password) => {
   try {
-    await fetch("http://localhost:5000/userjwt" + "/adduser", {
+    await fetch(userjwt + "/adduser", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

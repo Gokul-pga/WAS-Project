@@ -3,6 +3,7 @@ import { FaUserEdit } from "react-icons/fa";
 import { IoArrowBackSharp } from "react-icons/io5";
 import { MdDelete } from "react-icons/md";
 import ReportForm from "./reportform";
+import { deviceshow } from "@/envfile/auth";
 
 function Deviceshow({ setShow, show, username, id, setId }) {
   const [devices, setDevices] = useState([]);
@@ -17,7 +18,7 @@ function Deviceshow({ setShow, show, username, id, setId }) {
   const fetchData = async () => {
     try {
       const response = await fetch(
-        "http://localhost:5000/deviceshow" + `/${username}`,
+        deviceshow + `/${username}`,
         {
           method: "GET",
           headers: {

@@ -3,7 +3,7 @@ import toast from "react-hot-toast";
 
 export const admincreateaccount = async (username, email, password) => {
   try {
-    await fetch("http://localhost:5000/jwt" + "/add", {
+    await fetch(jwt + "/add", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
