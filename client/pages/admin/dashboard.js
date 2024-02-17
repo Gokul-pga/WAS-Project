@@ -98,7 +98,12 @@ function AdminDashboard() {
                     </div>
                     <div className="flex flex-row justify-around w-full">
                       <button>
-                        <MdDelete className="text-2xl text-red-500" />
+                        <div className="flex flex-col w-full justify-center items-center">
+                          <MdDelete className="text-2xl text-red-500" />
+                        </div>
+                        <div className="text-sm font-semibold text-gray-700">
+                          Delete Device
+                        </div>
                       </button>
                       <button>
                         <FaUserEdit className="text-2xl text-red-500" />

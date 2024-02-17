@@ -246,11 +246,14 @@ function Adminpg() {
                         deleteuser(id);
                       }}
                     >
-                      <MdDelete className="text-2xl text-red-500" />
+                      <div className="flex flex-col w-full justify-center items-center">
+                        <MdDelete className="text-2xl text-red-500" />
+                      </div>
+                      <div className="text-sm font-semibold text-gray-700">
+                        Delete User
+                      </div>
                     </button>
-                    <button>
-                      <FaUserEdit className="text-2xl text-red-500" />
-                    </button>
+
                     <button
                       onClick={() => {
                         const id = item._id;
@@ -259,7 +262,12 @@ function Adminpg() {
                         setShow(true);
                       }}
                     >
-                      <MdDevices className="text-2xl text-red-500" />
+                      <div className="flex flex-col w-full justify-center items-center">
+                        <MdDevices className="text-2xl text-red-500" />
+                      </div>
+                      <div className="text-sm font-semibold text-gray-700">
+                        Create Device
+                      </div>
                     </button>
                     {show && (
                       <Deviceform
