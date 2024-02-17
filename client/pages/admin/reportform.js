@@ -15,6 +15,7 @@ function ReportForm({ setReportForm, reportForm, id }) {
     tank_state: "",
     sump_duration: "",
     tank_duration: "",
+    pH_value: "",
   });
 
   const {
@@ -24,6 +25,7 @@ function ReportForm({ setReportForm, reportForm, id }) {
     tank_state,
     sump_duration,
     tank_duration,
+    pH_value,
   } = inputfields;
 
   const handlesubmit = async () => {
@@ -33,7 +35,8 @@ function ReportForm({ setReportForm, reportForm, id }) {
       sump_state !== "" &&
       tank_state !== "" &&
       sump_duration !== "" &&
-      tank_duration !== ""
+      tank_duration !== "" &&
+      pH_value !== ""
     ) {
       //   setInputfields({
       //     email:"",
@@ -51,7 +54,8 @@ function ReportForm({ setReportForm, reportForm, id }) {
         sump_state,
         tank_state,
         sump_duration,
-        tank_duration
+        tank_duration,
+        pH_value
       );
       console.log(inputfields);
       // setReportForm(false);
@@ -153,6 +157,19 @@ function ReportForm({ setReportForm, reportForm, id }) {
                   }}
                 />
               </div>
+              <div>
+                <input
+                  className=" p-2  text-black font-semibold"
+                  placeholder="pH-Value"
+                  value={pH_value}
+                  onChange={(e) => {
+                    setInputfields({
+                      ...inputfields,
+                      pH_value: e.target.value,
+                    });
+                  }}
+                />
+              </div>
             </div>
             <div className="p-3">
               <button
@@ -162,6 +179,12 @@ function ReportForm({ setReportForm, reportForm, id }) {
               >
                 Create Device
               </button>
+            </div>
+            <div className="flex flex-col justify-center w-full items-center">
+              <div>Note :-</div>
+              <div className="text-red-500 text-justify">
+                Sump-state and Tank-state should be "Low" , "Medium" or "High"
+              </div>
             </div>
           </div>
         </div>

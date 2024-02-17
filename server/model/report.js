@@ -7,6 +7,7 @@ const report = new mongoose.Schema({
   tank_state: String,
   sump_duration: String,
   tank_duration: String,
+  pH_value: String,
 });
 
 const reportData = mongoose.model("DeviceDataReport", report);

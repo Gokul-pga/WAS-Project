@@ -77,6 +77,7 @@ function Report() {
                     <th className="px-4 py-2">Tank State</th>
                     <th className="px-4 py-2">Sump Duration</th>
                     <th className="px-4 py-2">Tank Duration</th>
+                    <th className="px-4 py-2">pH Value</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -95,6 +96,7 @@ function Report() {
                       <td className="border px-4 py-2">
                         {report.tank_duration}
                       </td>
+                      <td className="border px-4 py-2">{report.pH_value}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -109,6 +111,7 @@ function Report() {
                     <th className="px-4 py-2">Tank State</th>
                     <th className="px-4 py-2">Sump Duration</th>
                     <th className="px-4 py-2">Tank Duration</th>
+                    <th className="px-4 py-2">pH Value</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -127,6 +130,7 @@ function Report() {
                       <td className="border px-4 py-2">
                         {report.tank_duration}
                       </td>
+                      <td className="border px-4 py-2">{report.pH_value}</td>
                     </tr>
                   ))}
                 </tbody>

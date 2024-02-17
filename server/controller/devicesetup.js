@@ -57,6 +57,16 @@ exports.addDevice = async (req, res) => {
 
 exports.getdevice = async (req, res) => {
   try {
+    const id = req.params.userid;
+    const device = await DeviceModel.findById(id);
+    res.send({ status: "ok", data: device });
+  } catch (error) {
+    console.log(error, "error from getdevice in backend");
+  }
+};
+
+exports.get = async (req, res) => {
+  try {
     const device = await DeviceModel.find({});
     res.send({ status: "ok", data: device });
   } catch (error) {

@@ -15,7 +15,7 @@ function AdminDashboard() {
   const [userDetails, setUserDetails] = useState([]);
   const getUserDetails = async () => {
     try {
-      await fetch(postdevice + "/getDevice", {
+      await fetch(postdevice + "/get", {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -36,12 +36,12 @@ function AdminDashboard() {
   return (
     <>
       <div className="text-black flex flex-row w-full h-[100vh]">
-        <div className="flex flex-row w-[25%]">
+        <div className="flex flex-row w-[25%] h-[100vh] ">
           <DashboardNavbar />
         </div>
         <div className="flex flex-col w-[75%] ">
           <div className="bg-sky-400 flex flex-row w-full px-5 py-3 justify-center text-xl font-semibold">
-            Dashboard
+            Device Details
           </div>
           {show ? (
             <div className="flex flex-wrap gap-5 w-[100%]  bg-white p-5">

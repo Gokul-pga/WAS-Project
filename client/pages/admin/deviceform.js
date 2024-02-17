@@ -147,6 +147,12 @@ function Deviceform({ show, setShow, userId, setUserId }) {
                 Create Device
               </button>
             </div>
+            <div className="flex flex-col justify-center w-full items-center">
+              <div>Note :-</div>
+              <div className="text-red-500">
+                Device status should be "Active" or "-"
+              </div>
+            </div>
           </div>
         </div>
       </Modal>

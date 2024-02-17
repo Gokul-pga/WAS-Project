@@ -1,14 +1,17 @@
 import React, { useEffect, useState } from "react";
-import { FaUserEdit } from "react-icons/fa";
 import { IoArrowBackSharp } from "react-icons/io5";
-import { MdDelete } from "react-icons/md";
+import { postdevice } from "@/envfile/auth";
+import { MdOutlineDevices } from "react-icons/md";
+import { IoLocationSharp } from "react-icons/io5";
+import { PiToggleRightFill } from "react-icons/pi";
+import { PiToggleLeftFill } from "react-icons/pi";
+import { FaThermometerEmpty } from "react-icons/fa";
+import { FaThermometerFull } from "react-icons/fa";
 import ReportForm from "./reportform";
-import { deviceshow } from "@/envfile/auth";
 
 function Deviceshow({ setShow, show, username, id, setId }) {
   const [devices, setDevices] = useState([]);
   const [reportForm, setReportForm] = useState(false);
-  console.log(username, "USERNAME");
 
   useEffect(() => {
     fetchData();
@@ -17,29 +20,23 @@ function Deviceshow({ setShow, show, username, id, setId }) {
 
   const fetchData = async () => {
     try {
-      const response = await fetch(
-        deviceshow + `/${username}`,
-        {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-            Accept: "application/json",
-          },
-        }
-      );
+      const response = await fetch(postdevice + "/get", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+      });
 
-      // Check if the response status is OK (200)
       if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`);
       }
 
-      // Parse the response as JSON
       const data = await response.json();
 
-      // Check if the response contains the expected data structure
       if (data.status === "ok") {
         console.log("Device data Fetched successfully");
-        setDevices(data.data);
+        setDevices(data.data, "device data from db");
       } else {
         console.error("Error fetching devices:", data.error);
       }
@@ -50,10 +47,10 @@ function Deviceshow({ setShow, show, username, id, setId }) {
 
   return (
     <>
-      <div className="flex flex-wrap gap-5 w-[100%] h-[100vh] ">
-        <div className="flex flex-row p-3 h-16 w-[100%]   justify-between items-center">
+      <div className="flex flex-col gap-5 w-[100%] h-[80vh] ">
+        <div className="flex flex-row p-3 h-16 w-[100%] justify-between items-center">
           <IoArrowBackSharp
-            className="text-2xl"
+            className="text-2xl cursor-pointer"
             onClick={() => {
               setShow(true);
             }}
@@ -76,32 +73,88 @@ function Deviceshow({ setShow, show, username, id, setId }) {
           />
         )}
 
-        <div className="flex flex-row h-40">
-          {devices.map((item, index) => (
-            <div
-              key={index}
-              className="flex  flex-col w-[45%] bg-green-400 items-center px-5 py-3   rounded-md justify-between"
-            >
-              <div className="flex-flex-col gap-5 ">
-                <div className="pb-2 flex flex-row gap-2">
-                  <div className="font-bold">Username:</div>{" "}
-                  <div className="font-semibold">{item.username}</div>
+        <div className="flex flex-col gap-3">
+          <div className="flex flex-row pl-5">
+            {devices
+              .filter((item) => item.username === username)
+              .map((item, index) => (
+                <div key={index} className="flex  flex-col  ">
+                  <div className=" px-4 py-1 rounded-md hover:scale-105 cursor-pointer transition-all flex flex-row gap-2 border-2 border-gray-400 items-center">
+                    <div className="font-bold">Username:</div>
+                    <div className="font-semibold">{item.username}</div>
+                  </div>
                 </div>
-                <div className=" flex flex-row gap-2">
-                  <div className="font-bold">Email:</div>{" "}
-                  <div className="font-semibold">{item.devicename}</div>
-                </div>
-              </div>
-              <div className="flex flex-row justify-around w-full">
-                <button>
-                  <MdDelete className="text-2xl text-red-500" />
-                </button>
-                <button>
-                  <FaUserEdit className="text-2xl text-red-500" />
-                </button>
-              </div>
-            </div>
-          ))}
+              ))}
+          </div>
+          <div className="flex flex-row  w-full h-96">
+            {devices
+              .filter((item) => item.username === username)
+              .map((item, index) => {
+                return (
+                  <div
+                    key={index}
+                    className="flex  flex-col items-center px-5 py-3   rounded-md justify-between"
+                  >
+                    <div className="flex flex-col justify-around w-full">
+                      {item.devices.map((data, dataIndex) => (
+                        <div key={dataIndex} className="gap-1 flex flex-col">
+                          <div className="flex flex-row gap-2">
+                            <div className="flex flex-row gap-2 items-center">
+                              <div>
+                                <MdOutlineDevices className="text-xl text-blue-500" />
+                              </div>
+                              <div className="font-semibold">DeviceName:</div>
+                            </div>
+                            <div>{data.devicename}</div>
+                          </div>
+                          <div className="flex flex-row gap-2">
+                            <div className="flex flex-row gap-2 items-center">
+                              <div>
+                                <IoLocationSharp className="text-xl text-green-400" />
+                              </div>
+                              <div className="font-semibold">Location:</div>
+                            </div>
+                            <div>{data.location}</div>
+                          </div>
+                          <div className="flex flex-row gap-2 ">
+                            <div className="flex flex-row gap-2 items-center">
+                              <div>
+                                {data.status === "Active" ? (
+                                  <PiToggleRightFill className="text-green-400 text-xl" />
+                                ) : (
+                                  /* You can use another icon or leave it empty based on your preference */
+                                  <PiToggleLeftFill className="text-red-400 text-xl" />
+                                )}
+                              </div>
+                              <div className="font-semibold">Status:</div>
+                            </div>
+                            <div>{data.status}</div>
+                          </div>
+                          <div className="flex flex-row gap-2 ">
+                            <div className="flex flex-row gap-2 items-center">
+                              <div>
+                                <FaThermometerFull className="text-xl text-gray-400" />
+                              </div>
+                              <div className="font-semibold">Sump - Vol:</div>
+                            </div>
+                            <div>{data.sump_vol}</div>
+                          </div>
+                          <div className="flex flex-row gap-2 pb-5">
+                            <div className="flex flex-row gap-2 items-center">
+                              <div>
+                                <FaThermometerEmpty className="text-xl" />
+                              </div>
+                              <div className="font-semibold">Tank - Vol:</div>
+                            </div>
+                            <div>{data.tank_vol}</div>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                );
+              })}
+          </div>
         </div>
       </div>
     </>

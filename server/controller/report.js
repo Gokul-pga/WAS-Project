@@ -9,6 +9,7 @@ exports.addReport = async (req, res) => {
     tank_state,
     sump_duration,
     tank_duration,
+    pH_value,
   } = req.body;
 
   try {
@@ -25,7 +26,7 @@ exports.addReport = async (req, res) => {
     if (!device) {
       return res
         .status(404)
-        .json({ status: "error", error: "Device not found" });
+        .json({ status: "error", error: "Device does not match" });
     }
 
     // Create a report for the device
@@ -36,6 +37,7 @@ exports.addReport = async (req, res) => {
       tank_state,
       sump_duration,
       tank_duration,
+      pH_value,
     });
 
     res.send({ status: "ok", data: req.body });

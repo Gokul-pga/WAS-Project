@@ -36,6 +36,9 @@ export const addDevice = async (
         if (data.status == "User Not Match") {
           toast.error("User Not Match");
         }
+        if (data.status == "Device does not match") {
+          toast.error("Device does not match");
+        }
       });
   } catch (error) {
     console.log(error, "device data send to database error");
