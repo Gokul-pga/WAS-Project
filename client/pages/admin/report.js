@@ -1,13 +1,5 @@
 import DashboardNavbar from "@/components/DashboardNavbar";
 import { deviceshow } from "@/envfile/auth";
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableColumn,
-  TableHeader,
-  TableRow,
-} from "@nextui-org/react";
 import React, { useEffect, useState } from "react";
 
 function Report() {
@@ -16,7 +8,7 @@ function Report() {
   const [searchQuery, setSearchQuery] = useState("");
   const getUserDetails = async () => {
     try {
-      await fetch(deviceshow + "/getallreport", {
+      await fetch(deviceshow + "/getAllReport", {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -72,12 +64,9 @@ function Report() {
                 <thead className="bg-gray-200">
                   <tr>
                     <th className="px-4 py-2">Username</th>
-                    <th className="px-4 py-2">Device Name</th>
-                    <th className="px-4 py-2">Sump State</th>
-                    <th className="px-4 py-2">Tank State</th>
-                    <th className="px-4 py-2">Sump Duration</th>
-                    <th className="px-4 py-2">Tank Duration</th>
-                    <th className="px-4 py-2">pH Value</th>
+                    <th className="px-4 py-2">DeviceId</th>
+                    <th className="px-4 py-2">Sump value</th>
+                    <th className="px-4 py-2">Tank value</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -88,15 +77,8 @@ function Report() {
                     >
                       <td className="border px-4 py-2">{report.username}</td>
                       <td className="border px-4 py-2">{report.devicename}</td>
-                      <td className="border px-4 py-2">{report.sump_state}</td>
-                      <td className="border px-4 py-2">{report.tank_state}</td>
-                      <td className="border px-4 py-2">
-                        {report.sump_duration}
-                      </td>
-                      <td className="border px-4 py-2">
-                        {report.tank_duration}
-                      </td>
-                      <td className="border px-4 py-2">{report.pH_value}</td>
+                      <td className="border px-4 py-2">{report.sump_value}</td>
+                      <td className="border px-4 py-2">{report.tank_value}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -106,12 +88,9 @@ function Report() {
                 <thead className="bg-gray-200">
                   <tr>
                     <th className="px-4 py-2">Username</th>
-                    <th className="px-4 py-2">Device Name</th>
-                    <th className="px-4 py-2">Sump State</th>
-                    <th className="px-4 py-2">Tank State</th>
-                    <th className="px-4 py-2">Sump Duration</th>
-                    <th className="px-4 py-2">Tank Duration</th>
-                    <th className="px-4 py-2">pH Value</th>
+                    <th className="px-4 py-2">DeviceId</th>
+                    <th className="px-4 py-2">Sump value</th>
+                    <th className="px-4 py-2">Tank value</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -122,15 +101,8 @@ function Report() {
                     >
                       <td className="border px-4 py-2">{report.username}</td>
                       <td className="border px-4 py-2">{report.devicename}</td>
-                      <td className="border px-4 py-2">{report.sump_state}</td>
-                      <td className="border px-4 py-2">{report.tank_state}</td>
-                      <td className="border px-4 py-2">
-                        {report.sump_duration}
-                      </td>
-                      <td className="border px-4 py-2">
-                        {report.tank_duration}
-                      </td>
-                      <td className="border px-4 py-2">{report.pH_value}</td>
+                      <td className="border px-4 py-2">{report.sump_value}</td>
+                      <td className="border px-4 py-2">{report.tank_value}</td>
                     </tr>
                   ))}
                 </tbody>

@@ -8,7 +8,7 @@ function Alert() {
   const [searchQuery, setSearchQuery] = useState("");
   const getUserDetails = async () => {
     try {
-      await fetch(deviceshow + "/getallreport", {
+      await fetch(deviceshow + "/getallalert", {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -71,7 +71,7 @@ function Alert() {
                 <thead className="bg-gray-200">
                   <tr>
                     <th className="px-4 py-2">Username</th>
-                    <th className="px-4 py-2">Device Name</th>
+                    <th className="px-4 py-2">DeviceId</th>
                     <th className="px-4 py-2">Sump State</th>
                     <th className="px-4 py-2">Tank State</th>
                     <th className="px-4 py-2">Sump Duration</th>
@@ -119,7 +119,7 @@ function Alert() {
                 <thead className="bg-gray-200">
                   <tr>
                     <th className="px-4 py-2">Username</th>
-                    <th className="px-4 py-2">Device Name</th>
+                    <th className="px-4 py-2">DeviceId</th>
                     <th className="px-4 py-2">Sump State</th>
                     <th className="px-4 py-2">Tank State</th>
                     <th className="px-4 py-2">Sump Duration</th>

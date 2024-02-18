@@ -1,14 +1,17 @@
 import { deviceshow } from "@/envfile/auth";
 import toast from "react-hot-toast";
 
-export const addReport = async (
+export const addAlert = async (
   username,
   devicename,
-  sump_value,
-  tank_value
+  sump_state,
+  tank_state,
+  sump_duration,
+  tank_duration,
+  pH_value
 ) => {
   try {
-    await fetch(deviceshow + "/addReport", {
+    await fetch(deviceshow + "/addAlert", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -18,14 +21,17 @@ export const addReport = async (
       body: JSON.stringify({
         username,
         devicename,
-        sump_value,
-        tank_value,
+        sump_state,
+        tank_state,
+        sump_duration,
+        tank_duration,
+        pH_value,
       }),
     })
       .then((res) => res.json())
       .then((data) => {
         if (data.status == "ok") {
-          toast.success("Report Created");
+          toast.success("Alert Created");
         }
         if (data.status == "User not found") {
           toast.error("Username Not Match");

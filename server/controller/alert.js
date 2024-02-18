@@ -1,8 +1,16 @@
 const { DeviceModel } = require("../model/addDevice");
-const { reportData } = require("../model/report");
+const { alertData } = require("../model/alert");
 
-exports.addReport = async (req, res) => {
-  const { username, devicename, sump_value, tank_value } = req.body;
+exports.addAlert = async (req, res) => {
+  const {
+    username,
+    devicename,
+    sump_state,
+    tank_state,
+    sump_duration,
+    tank_duration,
+    pH_value,
+  } = req.body;
 
   try {
     // Find the user
@@ -22,11 +30,14 @@ exports.addReport = async (req, res) => {
     }
 
     // Create a report for the device
-    await reportData.create({
+    await alertData.create({
       username,
       devicename,
-      sump_value,
-      tank_value,
+      sump_state,
+      tank_state,
+      sump_duration,
+      tank_duration,
+      pH_value,
     });
 
     res.send({ status: "ok", data: req.body });
@@ -48,9 +59,9 @@ exports.addReport = async (req, res) => {
 //   }
 // };
 
-exports.getAllReport = async (req, res) => {
+exports.getAllAlert = async (req, res) => {
   try {
-    const allData = await reportData.find({});
+    const allData = await alertData.find({});
     res.send({ status: "getAllReport", data: allData });
   } catch (error) {
     console.log(error, "Get User device error");

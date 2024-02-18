@@ -3,12 +3,9 @@ const mongoose = require("mongoose");
 const report = new mongoose.Schema({
   username: String,
   devicename: String,
-  sump_state: String,
-  tank_state: String,
-  sump_duration: String,
-  tank_duration: String,
-  pH_value: String,
+  sump_value: Number,
+  tank_value: Number,
 });
 
-const reportData = mongoose.model("DeviceDataReport", report);
+const reportData = mongoose.model("ReportData", report);
 exports.reportData = reportData;

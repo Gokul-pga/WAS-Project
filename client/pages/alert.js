@@ -9,7 +9,7 @@ function Alert() {
 
   const getUserDetails = async () => {
     try {
-      await fetch(deviceshow + "/getallreport", {
+      await fetch(deviceshow + "/getallalert", {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -72,7 +72,7 @@ function Alert() {
           <div className="flex flex-col w-full h-[100vh] p-5  text-lg">
             <div className="p-2 mb-5 flex flex-row gap-5">
               <input
-                placeholder="Search Username "
+                placeholder="Search DeviceId "
                 className="px-3 py-2 bg-gray-200"
                 value={searchQuery}
                 onChange={handleSearchQueryChange}
@@ -83,7 +83,7 @@ function Alert() {
                 <thead className="bg-gray-200">
                   <tr>
                     <th className="px-4 py-2">Username</th>
-                    <th className="px-4 py-2">Device Name</th>
+                    <th className="px-4 py-2">DeviceId</th>
                     <th className="px-4 py-2">Sump State</th>
                     <th className="px-4 py-2">Tank State</th>
                     <th className="px-4 py-2">Sump Duration</th>
@@ -131,7 +131,7 @@ function Alert() {
                 <thead className="bg-gray-200">
                   <tr>
                     <th className="px-4 py-2">Username</th>
-                    <th className="px-4 py-2">Device Name</th>
+                    <th className="px-4 py-2">DeviceId</th>
                     <th className="px-4 py-2">Sump State</th>
                     <th className="px-4 py-2">Tank State</th>
                     <th className="px-4 py-2">Sump Duration</th>

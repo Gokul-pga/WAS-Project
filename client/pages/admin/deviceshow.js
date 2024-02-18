@@ -7,11 +7,13 @@ import { PiToggleRightFill } from "react-icons/pi";
 import { PiToggleLeftFill } from "react-icons/pi";
 import { FaThermometerEmpty } from "react-icons/fa";
 import { FaThermometerFull } from "react-icons/fa";
-import ReportForm from "./reportform";
+import AlertForm from "./alertForm";
+import ReportForm from "./reportForm";
 
 function Deviceshow({ setShow, show, username, id, setId }) {
   const [devices, setDevices] = useState([]);
   const [reportForm, setReportForm] = useState(false);
+  const [alertForm, setAlertForm] = useState(false);
 
   useEffect(() => {
     fetchData();
@@ -55,23 +57,42 @@ function Deviceshow({ setShow, show, username, id, setId }) {
               setShow(true);
             }}
           />
-          <button
-            onClick={() => {
-              setReportForm(true);
-            }}
-            className="px-5 py-2 bg-gray-200 text-red-600 font-bold"
-          >
-            Report Create
-          </button>
+          <div className="flex flex-row gap-3">
+            <button
+              onClick={() => {
+                setAlertForm(true);
+              }}
+              className="px-5 py-2 bg-gray-200 text-red-600 font-bold"
+            >
+              Alert Create
+            </button>
+            {alertForm && (
+              <AlertForm
+                username={username}
+                alertForm={alertForm}
+                setAlertForm={setAlertForm}
+                id={id}
+              />
+            )}
+            <button
+              onClick={() => {
+                setReportForm(true);
+                console.log("open");
+              }}
+              className="px-5 py-2 bg-gray-200 text-red-600 font-bold"
+            >
+              Report Create
+            </button>
+            {reportForm && (
+              <ReportForm
+                username={username}
+                setReportForm={setReportForm}
+                reportForm={reportForm}
+                id={id}
+              />
+            )}
+          </div>
         </div>
-        {reportForm && (
-          <ReportForm
-            username={username}
-            setReportForm={setReportForm}
-            reportForm={reportForm}
-            id={id}
-          />
-        )}
 
         <div className="flex flex-col gap-3">
           <div className="flex flex-row pl-5">
@@ -103,7 +124,7 @@ function Deviceshow({ setShow, show, username, id, setId }) {
                               <div>
                                 <MdOutlineDevices className="text-xl text-blue-500" />
                               </div>
-                              <div className="font-semibold">DeviceName:</div>
+                              <div className="font-semibold">DeviceId:</div>
                             </div>
                             <div>{data.devicename}</div>
                           </div>

@@ -121,7 +121,7 @@ function Dashboard() {
                                 <div>
                                   <MdOutlineDevices className="text-xl text-blue-500" />
                                 </div>
-                                <div className="font-semibold">DeviceName:</div>
+                                <div className="font-semibold">DeviceId:</div>
                               </div>
                               <div>{data.devicename}</div>
                             </div>
