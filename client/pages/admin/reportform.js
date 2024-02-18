@@ -32,7 +32,6 @@ function ReportForm({ setReportForm, reportForm, id }) {
       addReport(username, devicename, sump_value, tank_value);
       setReportForm(false);
       console.log(inputfields);
-      // setReportForm(false);
     } else {
       toast.error("All fields are mandatory");
     }
@@ -117,12 +116,6 @@ function ReportForm({ setReportForm, reportForm, id }) {
                 Create Report
               </button>
             </div>
-            {/* <div className="flex flex-col justify-center w-full items-center">
-              <div>Note :-</div>
-              <div className="text-red-500 text-justify">
-                Sump-state and Tank-state should be "Low" , "Medium" or "High"
-              </div>
-            </div> */}
           </div>
         </div>
       </Modal>
