@@ -8,7 +8,7 @@ import { PiToggleLeftFill } from "react-icons/pi";
 import { FaThermometerEmpty } from "react-icons/fa";
 import { FaThermometerFull } from "react-icons/fa";
 import AlertForm from "./alertForm";
-import ReportForm from "./reportForm";
+import ReportForm from "./reportform";
 
 function Deviceshow({ setShow, show, username, id, setId }) {
   const [devices, setDevices] = useState([]);
