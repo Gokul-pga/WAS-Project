@@ -8,7 +8,11 @@ const alert = new mongoose.Schema({
   sump_duration: String,
   tank_duration: String,
   pH_value: String,
+  date: {
+    type: Date,
+    default: Date.now,
+  },
 });
 
-const alertData = mongoose.model("DeviceDataReport", alert);
+const alertData = mongoose.model("alertdatas", alert);
 exports.alertData = alertData;
