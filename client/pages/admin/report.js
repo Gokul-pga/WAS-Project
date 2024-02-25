@@ -87,6 +87,7 @@ function Report() {
       const deviceMatch = report.devicename
         .toLowerCase()
         .includes(deviceQuery.toLowerCase());
+
       const locationMatch = getLocation
         .filter((item) => item.username === report.username)
         .some((data) =>
@@ -98,10 +99,10 @@ function Report() {
                 .includes(locationQuery.toLowerCase())
           )
         );
+
       const dateMatch = new Date(report.date)
         .toLocaleDateString()
-        .toLowerCase()
-        .includes(dateQuery.toLowerCase());
+        .includes(dateQuery);
 
       return usernameMatch && deviceMatch && locationMatch && dateMatch;
     });
@@ -144,7 +145,10 @@ function Report() {
                 onChange={handleDateChange}
               />
             </div>
-            {searchQuery.length >= 1 ? (
+            {searchQuery ||
+            dateQuery ||
+            locationQuery ||
+            deviceQuery.length >= 1 ? (
               <table className="table-auto w-full">
                 <thead className="bg-gray-200">
                   <tr>

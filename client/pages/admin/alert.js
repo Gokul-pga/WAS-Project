@@ -56,10 +56,9 @@ function Alert() {
         user.username && user.username.toLowerCase
           ? user.username.toLowerCase()
           : "";
-      const lowercaseDate =
-        user.date && user.date.toLocaleDateString
-          ? new Date(user.date).toLocaleDateString().toLowerCase()
-          : "";
+      const lowercaseDate = new Date(user.date)
+        .toLocaleDateString()
+        .toLowerCase();
       const lowercasedeviceid =
         user.devicename && user.devicename.toLowerCase
           ? user.devicename.toLowerCase()
@@ -183,7 +182,10 @@ function Alert() {
               />
             </div>
 
-            {searchQuery || dateQuery.length >= 3 ? (
+            {searchQuery ||
+            dateQuery ||
+            deviceQuery ||
+            locationQuery.length >= 1 ? (
               <table className="table-auto w-full">
                 <thead className="bg-gray-200">
                   <tr>

@@ -110,10 +110,17 @@ function Report() {
               <table className="table-auto w-full">
                 <thead className="bg-gray-200">
                   <tr>
+                    <th className="px-4 py-2">S:No</th>
                     <th className="px-4 py-2">Username</th>
                     <th className="px-4 py-2">DeviceId</th>
+                    <th className="px-4 py-2">Location</th>
+                    <th className="px-4 py-2">Sump Volume</th>
+                    <th className="px-4 py-2">Tank Volume</th>
                     <th className="px-4 py-2">Sump value</th>
                     <th className="px-4 py-2">Tank value</th>
+                    <th className="px-4 py-2">Sump Duration</th>
+                    <th className="px-4 py-2">Tank Duration</th>
+                    <th className="px-4 py-2">Date</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -122,6 +129,8 @@ function Report() {
                       key={report._id}
                       className={index % 2 === 0 ? "bg-gray-100" : "bg-white"}
                     >
+                      <td className="border px-4 py-2">{index + 1}</td>
+
                       <td className="border px-4 py-2">{report.username}</td>
                       <td className="border px-4 py-2">{report.devicename}</td>
                       <td className="border px-4 py-2 font-semibold">
