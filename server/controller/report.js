@@ -2,7 +2,14 @@ const { DeviceModel } = require("../model/addDevice");
 const { reportData } = require("../model/report");
 
 exports.addReport = async (req, res) => {
-  const { username, devicename, sump_value, tank_value } = req.body;
+  const {
+    username,
+    devicename,
+    sump_value,
+    tank_value,
+    sump_duration,
+    tank_duration,
+  } = req.body;
 
   try {
     // Find the user
@@ -27,6 +34,8 @@ exports.addReport = async (req, res) => {
       devicename,
       sump_value,
       tank_value,
+      sump_duration,
+      tank_duration,
     });
 
     res.send({ status: "ok", data: req.body });

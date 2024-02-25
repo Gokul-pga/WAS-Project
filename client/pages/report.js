@@ -66,7 +66,7 @@ function Report() {
           <UserDashboardNavbar />
         </div>
         <div className="flex flex-col w-[75%] ">
-          <div className="bg-sky-400 flex flex-row tracking-wider  w-full px-5 py-3 justify-center text-xl font-bold">
+          <div className="bg-black text-white flex flex-row tracking-wider  w-full px-5 py-3 justify-center text-xl font-bold">
             Report Data
           </div>
           <div className="flex flex-col w-full h-[100vh] p-5  text-lg">

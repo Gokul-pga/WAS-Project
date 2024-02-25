@@ -40,7 +40,7 @@ function AdminDashboard() {
           <DashboardNavbar />
         </div>
         <div className="flex flex-col w-[75%] ">
-          <div className="bg-sky-400 flex flex-row w-full px-5 py-3 justify-center text-xl font-semibold">
+          <div className="bg-black text-white flex flex-row w-full px-5 py-3 justify-center text-xl font-semibold">
             Device Details
           </div>
           {show ? (

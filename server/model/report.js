@@ -5,6 +5,8 @@ const report = new mongoose.Schema({
   devicename: String,
   sump_value: Number,
   tank_value: Number,
+  sump_duration: Number,
+  tank_duration: Number,
   date: {
     type: Date,
     default: Date.now,

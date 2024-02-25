@@ -13,20 +13,11 @@ function AlertForm({ setAlertForm, alertForm, id }) {
     devicename: "",
     sump_state: "",
     tank_state: "",
-    sump_duration: "",
-    tank_duration: "",
     pH_value: "",
   });
 
-  const {
-    username,
-    devicename,
-    sump_state,
-    tank_state,
-    sump_duration,
-    tank_duration,
-    pH_value,
-  } = inputfields;
+  const { username, devicename, sump_state, tank_state, pH_value } =
+    inputfields;
 
   const handlesubmit = async () => {
     if (
@@ -34,29 +25,19 @@ function AlertForm({ setAlertForm, alertForm, id }) {
       devicename !== "" &&
       sump_state !== "" &&
       tank_state !== "" &&
-      sump_duration !== "" &&
-      tank_duration !== "" &&
       pH_value !== ""
     ) {
-      //   setInputfields({
-      //     email:"",
-      // username :"",
-      // devicename :"",
-      // deviceId :"",
-      // sump_state :"",
-      // tank_state :"",
-      // sump_duration :"",
-      // tank_duration :"",
-      //   });
-      addAlert(
-        username,
-        devicename,
-        sump_state,
-        tank_state,
-        sump_duration,
-        tank_duration,
-        pH_value
-      );
+      setInputfields({
+        email: "",
+        username: "",
+        devicename: "",
+        deviceId: "",
+        sump_state: "",
+        tank_state: "",
+        sump_duration: "",
+        tank_duration: "",
+      });
+      addAlert(username, devicename, sump_state, tank_state, pH_value);
       console.log(inputfields);
       setAlertForm(false);
     } else {
@@ -118,19 +99,7 @@ function AlertForm({ setAlertForm, alertForm, id }) {
                   }}
                 />
               </div>
-              <div>
-                <input
-                  className=" p-2  text-black font-semibold"
-                  placeholder="sump_duration"
-                  value={sump_duration}
-                  onChange={(e) => {
-                    setInputfields({
-                      ...inputfields,
-                      sump_duration: e.target.value,
-                    });
-                  }}
-                />
-              </div>
+
               <div>
                 <input
                   className=" p-2  text-black font-semibold"
@@ -144,24 +113,13 @@ function AlertForm({ setAlertForm, alertForm, id }) {
                   }}
                 />
               </div>
-              <div>
-                <input
-                  className=" p-2  text-black font-semibold"
-                  placeholder="tank_duration"
-                  value={tank_duration}
-                  onChange={(e) => {
-                    setInputfields({
-                      ...inputfields,
-                      tank_duration: e.target.value,
-                    });
-                  }}
-                />
-              </div>
+
               <div>
                 <input
                   className=" p-2  text-black font-semibold"
                   placeholder="pH-Value"
                   value={pH_value}
+                  type="number"
                   onChange={(e) => {
                     setInputfields({
                       ...inputfields,

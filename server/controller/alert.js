@@ -2,15 +2,7 @@ const { DeviceModel } = require("../model/addDevice");
 const { alertData } = require("../model/alert");
 
 exports.addAlert = async (req, res) => {
-  const {
-    username,
-    devicename,
-    sump_state,
-    tank_state,
-    sump_duration,
-    tank_duration,
-    pH_value,
-  } = req.body;
+  const { username, devicename, sump_state, tank_state, pH_value } = req.body;
 
   try {
     // Find the user
@@ -35,8 +27,6 @@ exports.addAlert = async (req, res) => {
       devicename,
       sump_state,
       tank_state,
-      sump_duration,
-      tank_duration,
       pH_value,
     });
 

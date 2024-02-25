@@ -6,8 +6,6 @@ export const addAlert = async (
   devicename,
   sump_state,
   tank_state,
-  sump_duration,
-  tank_duration,
   pH_value
 ) => {
   try {
@@ -23,8 +21,6 @@ export const addAlert = async (
         devicename,
         sump_state,
         tank_state,
-        sump_duration,
-        tank_duration,
         pH_value,
       }),
     })

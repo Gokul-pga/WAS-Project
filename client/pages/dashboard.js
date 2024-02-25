@@ -83,7 +83,7 @@ function Dashboard() {
           <UserDashboardNavbar />
         </div>
         <div className="flex flex-col w-[75%] ">
-          <div className="bg-sky-400 flex flex-col w-full gap-3 px-5 py-3 justify-center text-lg text-white ">
+          <div className="bg-black  flex flex-col w-full gap-3 px-5 py-3 justify-center text-lg text-white ">
             <div className="flex flex-row gap-2">
               <div className="flex flex-row gap-1 items-center">
                 <div>

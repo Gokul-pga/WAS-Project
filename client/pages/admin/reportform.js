@@ -12,6 +12,8 @@ function ReportForm({ setReportForm, reportForm, id }) {
     devicename: "",
     sump_value: "",
     tank_value: "",
+    sump_duration: "",
+    tank_duration: "",
   });
 
   const { username, devicename, sump_value, tank_value } = inputfields;
@@ -21,15 +23,26 @@ function ReportForm({ setReportForm, reportForm, id }) {
       username !== "" &&
       devicename !== "" &&
       sump_value !== "" &&
-      tank_value !== ""
+      tank_value !== "" &&
+      sump_duration !== "" &&
+      tank_duration !== ""
     ) {
       setInputfields({
         username: "",
         devicename: "",
         sump_value: "",
         tank_value: "",
+        sump_duration: "",
+        tank_duration: "",
       });
-      addReport(username, devicename, sump_value, tank_value);
+      addReport(
+        username,
+        devicename,
+        sump_value,
+        tank_value,
+        sump_duration,
+        tank_duration
+      );
       setReportForm(false);
       console.log(inputfields);
     } else {
@@ -88,6 +101,34 @@ function ReportForm({ setReportForm, reportForm, id }) {
                     setInputfields({
                       ...inputfields,
                       sump_value: e.target.value,
+                    });
+                  }}
+                />
+              </div>
+              <div>
+                <input
+                  className=" p-2  text-black font-semibold"
+                  placeholder="tank_value"
+                  value={tank_value}
+                  type="number"
+                  onChange={(e) => {
+                    setInputfields({
+                      ...inputfields,
+                      tank_value: e.target.value,
+                    });
+                  }}
+                />
+              </div>
+              <div>
+                <input
+                  className=" p-2  text-black font-semibold"
+                  placeholder="tank_value"
+                  value={tank_value}
+                  type="number"
+                  onChange={(e) => {
+                    setInputfields({
+                      ...inputfields,
+                      tank_value: e.target.value,
                     });
                   }}
                 />

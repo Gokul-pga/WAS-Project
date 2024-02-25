@@ -30,8 +30,8 @@ const childSchema = new mongoose.Schema({
   userId: String,
   location: String,
   status: String,
-  sump_vol: String,
-  tank_vol: String,
+  sump_vol: Number,
+  tank_vol: Number,
 });
 
 // Your parent schema with the nested array
