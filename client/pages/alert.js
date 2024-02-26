@@ -7,6 +7,8 @@ function Alert() {
 
   const [userDetails, setUserDetails] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
+  const [dateQuery, setDateQuery] = useState("");
+  const [locationQuery, setLocationQuery] = useState("");
   const [userName, setUserName] = useState("");
 
   const getUserDetails = async () => {
@@ -55,11 +57,49 @@ function Alert() {
   const handleSearchQueryChange = (event) => {
     setSearchQuery(event.target.value);
   };
+  const handleLocationChange = (event) => {
+    setLocationQuery(event.target.value);
+  };
+  const handleDateChange = (event) => {
+    setDateQuery(event.target.value);
+  };
 
   const filterDevice = () => {
-    return filteredUserDetails.filter((device) =>
-      device.devicename.toLowerCase().includes(searchQuery.toLowerCase())
+    return filteredUserDetails.filter(
+      (device) =>
+        device.devicename.toLowerCase().includes(searchQuery.toLowerCase()) &&
+        new Date(device.date)
+          .toLocaleDateString()
+          .toLowerCase()
+          .includes(dateQuery) &&
+        getLocation
+          .filter((item) => item.username === device.username)
+          .some((data) =>
+            data.devices.some(
+              (deviceData) =>
+                deviceData.devicename === device.devicename &&
+                deviceData.location
+                  .toLowerCase()
+                  .includes(locationQuery.toLowerCase())
+            )
+          )
     );
+  };
+
+  const getPhColor = (pH) => {
+    const numericPh = parseFloat(pH);
+
+    if (numericPh >= 1 && numericPh <= 3) {
+      return "red";
+    } else if (numericPh > 3 && numericPh <= 6) {
+      return "yellow";
+    } else if (numericPh > 6 && numericPh <= 8) {
+      return "green";
+    } else if (numericPh > 8 && numericPh <= 10) {
+      return "blue";
+    } else {
+      return "purple"; // Default color if pH is out of expected range
+    }
   };
 
   const fetchData = async () => {
@@ -98,18 +138,12 @@ function Alert() {
             Alert Data
           </div>
           <div className="flex flex-col w-full h-[100vh] p-5  text-lg">
-            <div className="p-2 mb-5 flex flex-row gap-5">
+            <div className="p-2 mb-5 flex flex-row w-full justify-between gap-5">
               <input
-                placeholder="Search Username"
+                placeholder="Search DeviceId"
                 className="px-3 py-2 bg-gray-200"
                 value={searchQuery}
                 onChange={handleSearchQueryChange}
-              />
-              {/* <input
-                placeholder="Search DeviceId"
-                className="px-3 py-2 bg-gray-200"
-                value={deviceQuery}
-                onChange={handledeviceidChange}
               />
               <input
                 placeholder="Search Location"
@@ -117,14 +151,13 @@ function Alert() {
                 value={locationQuery}
                 onChange={handleLocationChange}
               />
-
               <input
-                placeholder="Search Date DD/MM/YYYY"
+                placeholder="Search Date"
                 className="px-3 py-2 bg-gray-200"
                 value={dateQuery}
                 type="text"
                 onChange={handleDateChange}
-              /> */}
+              />
             </div>
             {searchQuery.length >= 1 ? (
               <table className="table-auto w-full">
@@ -147,61 +180,8 @@ function Alert() {
                       className={index % 2 === 0 ? "bg-gray-100" : "bg-white"}
                     >
                       <td className="border px-4 py-2">{index + 1}</td>
-
                       <td className="border px-4 py-2">{report.username}</td>
                       <td className="border px-4 py-2">{report.devicename}</td>
-                      <td
-                        className="border px-4 py-2 font-semibold"
-                        style={{
-                          color: tankStateColors[report.sump_state] || "black",
-                        }}
-                      >
-                        {report.sump_state}
-                      </td>
-                      <td
-                        className="border px-4 py-2 font-semibold"
-                        style={{
-                          color: tankStateColors[report.tank_state] || "black",
-                        }}
-                      >
-                        {report.tank_state}
-                      </td>
-                      <td className="border px-4 py-2">
-                        {report.sump_duration}
-                      </td>
-                      <td className="border px-4 py-2">
-                        {report.tank_duration}
-                      </td>
-                      <td className="border px-4 py-2">{report.pH_value}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            ) : (
-              <table className="table-auto w-full">
-                <thead className="bg-gray-200">
-                  <tr>
-                    <th className="px-4 py-2">S:No</th>
-                    <th className="px-4 py-2">Username</th>
-                    <th className="px-4 py-2">DeviceId</th>
-                    <th className="px-4 py-2">Location</th>
-                    <th className="px-4 py-2">Sump State</th>
-                    <th className="px-4 py-2">Tank State</th>
-                    <th className="px-4 py-2">pH Value</th>
-                    <th className="px-4 py-2">Date</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {filterDevice().map((report, index) => (
-                    <tr
-                      key={report._id}
-                      className={index % 2 === 0 ? "bg-gray-100" : "bg-white"}
-                    >
-                      <td className="border px-4 py-2">{index + 1}</td>
-
-                      <td className="border px-4 py-2">{report.username}</td>
-                      <td className="border px-4 py-2">{report.devicename}</td>
-
                       {getLocation
                         .filter((item) => item.username === report.username)
                         .map((data) =>
@@ -231,7 +211,78 @@ function Alert() {
                       >
                         {report.tank_state}
                       </td>
-                      <td className="border px-4 py-2">{report.pH_value}</td>
+                      <td
+                        className="border px-4 py-2"
+                        style={{ color: getPhColor(report.pH_value) }}
+                      >
+                        {report.pH_value}
+                      </td>{" "}
+                      <td className="border px-4 py-2">
+                        {new Date(report.date).toLocaleDateString()}{" "}
+                        {/* Display Date */}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            ) : (
+              <table className="table-auto w-full">
+                <thead className="bg-gray-200">
+                  <tr>
+                    <th className="px-4 py-2">S:No</th>
+                    <th className="px-4 py-2">Username</th>
+                    <th className="px-4 py-2">DeviceId</th>
+                    <th className="px-4 py-2">Location</th>
+                    <th className="px-4 py-2">Sump State</th>
+                    <th className="px-4 py-2">Tank State</th>
+                    <th className="px-4 py-2">pH Value</th>
+                    <th className="px-4 py-2">Date</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {filterDevice().map((report, index) => (
+                    <tr
+                      key={report._id}
+                      className={index % 2 === 0 ? "bg-gray-100" : "bg-white"}
+                    >
+                      <td className="border px-4 py-2">{index + 1}</td>
+                      <td className="border px-4 py-2">{report.username}</td>
+                      <td className="border px-4 py-2">{report.devicename}</td>
+                      {getLocation
+                        .filter((item) => item.username === report.username)
+                        .map((data) =>
+                          data.devices
+                            .filter(
+                              (item) => item.devicename === report.devicename
+                            )
+                            .map((deviceData, id) => (
+                              <td key={id} className="border px-4 py-2">
+                                {deviceData.location}
+                              </td>
+                            ))
+                        )}
+                      <td
+                        className="border px-4 py-2 font-semibold"
+                        style={{
+                          color: tankStateColors[report.sump_state] || "black",
+                        }}
+                      >
+                        {report.sump_state}
+                      </td>
+                      <td
+                        className="border px-4 py-2 font-semibold"
+                        style={{
+                          color: tankStateColors[report.tank_state] || "black",
+                        }}
+                      >
+                        {report.tank_state}
+                      </td>
+                      <td
+                        className="border px-4 py-2"
+                        style={{ color: getPhColor(report.pH_value) }}
+                      >
+                        {report.pH_value}
+                      </td>{" "}
                       <td className="border px-4 py-2">
                         {new Date(report.date).toLocaleDateString()}{" "}
                         {/* Display Date */}
