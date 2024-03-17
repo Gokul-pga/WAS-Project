@@ -16,7 +16,14 @@ function ReportForm({ setReportForm, reportForm, id }) {
     tank_duration: "",
   });
 
-  const { username, devicename, sump_value, tank_value } = inputfields;
+  const {
+    username,
+    devicename,
+    sump_value,
+    tank_value,
+    sump_duration,
+    tank_duration,
+  } = inputfields;
 
   const handlesubmit = async () => {
     if (
@@ -122,13 +129,13 @@ function ReportForm({ setReportForm, reportForm, id }) {
               <div>
                 <input
                   className=" p-2  text-black font-semibold"
-                  placeholder="tank_value"
-                  value={tank_value}
+                  placeholder="Sump Duration"
+                  value={sump_duration}
                   type="number"
                   onChange={(e) => {
                     setInputfields({
                       ...inputfields,
-                      tank_value: e.target.value,
+                      sump_duration: e.target.value,
                     });
                   }}
                 />
@@ -136,13 +143,13 @@ function ReportForm({ setReportForm, reportForm, id }) {
               <div>
                 <input
                   className=" p-2  text-black font-semibold"
-                  placeholder="tank_value"
-                  value={tank_value}
+                  placeholder="Tank Duration"
+                  value={tank_duration}
                   type="number"
                   onChange={(e) => {
                     setInputfields({
                       ...inputfields,
-                      tank_value: e.target.value,
+                      tank_duration: e.target.value,
                     });
                   }}
                 />

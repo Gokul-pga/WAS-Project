@@ -5,7 +5,9 @@ export const addReport = async (
   username,
   devicename,
   sump_value,
-  tank_value
+  tank_value,
+  sump_duration,
+  tank_duration
 ) => {
   try {
     await fetch(deviceshow + "/addReport", {
@@ -20,6 +22,8 @@ export const addReport = async (
         devicename,
         sump_value,
         tank_value,
+        sump_duration,
+        tank_duration,
       }),
     })
       .then((res) => res.json())
