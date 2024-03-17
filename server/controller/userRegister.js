@@ -43,3 +43,20 @@ exports.deleteuser = async (req, res) => {
     console.log(error, "delete user error in backend");
   }
 };
+
+exports.deleteuser = async (req, res) => {
+  try {
+    const id = req.params.id;
+
+    // Delete the user
+    await userAuth.findByIdAndDelete(id);
+
+    // Delete the associated device
+    await DeviceModel.findOneAndDelete({ userId: id });
+
+    res.send({ status: "deleted" });
+  } catch (error) {
+    console.log(error, "delete user error in backend");
+    res.status(500).send({ status: "Error", error: error.message });
+  }
+};
